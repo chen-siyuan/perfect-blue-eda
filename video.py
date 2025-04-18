@@ -2,7 +2,7 @@ import cv2 as cv
 
 
 class Video:
-    def __init__(self, path):
+    def __init__(self, path, *, verbose=False):
         self._cap = cv.VideoCapture(path)
 
         if not self._cap.isOpened():
@@ -14,6 +14,14 @@ class Video:
 
         self.fps = self._cap.get(cv.CAP_PROP_FPS)
         self.num_secs = self.num_frames / self.fps
+
+        if verbose:
+            print(f"num_frames = {self.num_frames}")
+            print(f"height = {self.height}")
+            print(f"width = {self.width}")
+            print(f"fps = {self.fps:.4f}")
+            print(f"num_secs = {self.num_secs:.4f}")
+            print(f"num_mins = {self.num_secs / 60:.4f}")
 
     def __getitem__(self, idx):
         if not 0 <= idx < self.num_frames:
