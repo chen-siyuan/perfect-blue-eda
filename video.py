@@ -2,6 +2,8 @@ import cv2 as cv
 
 
 class Video:
+    """Encapsulate video file as an array of frames."""
+
     def __init__(self, path, *, verbose=False):
         self._cap = cv.VideoCapture(path)
 
